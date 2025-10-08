@@ -12,6 +12,7 @@
       --accent: #e63946;
       --light: #f5f7fa;
       --text: #1b263b;
+      --instagram: #E4405F;
     }
     
     * {
@@ -378,14 +379,24 @@
 
     .social a {
       color: white;
-      margin: 0 15px;
+      margin: 0 10px;
       font-size: 1.8rem;
-      transition: color 0.3s, transform 0.3s;
+      transition: all 0.3s;
+      padding: 10px;
+      border-radius: 50%;
+      background: var(--instagram);
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(228, 64, 95, 0.3);
     }
 
     .social a:hover {
-      color: var(--accent);
-      transform: translateY(-5px);
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 6px 15px rgba(228, 64, 95, 0.4);
+      background: linear-gradient(135deg, var(--instagram), #C13584);
     }
 
     .copyright {
@@ -519,6 +530,13 @@
       
       .modal-content {
         padding: 30px 20px;
+      }
+      
+      .social a {
+        margin: 0 8px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.6rem;
       }
     }
   </style>
@@ -677,9 +695,6 @@
           <a href="https://www.instagram.com/manzevo.sr/" target="_blank" title="Síguenos en Instagram">
             <i class="fab fa-instagram"></i>
           </a>
-          <a href="#" title="Síguenos en Facebook">
-            <i class="fab fa-facebook"></i>
-          </a>
         </div>
       </div>
       
@@ -733,6 +748,11 @@
         <p><i class="fas fa-envelope" style="margin-right: 10px;"></i> manzevo.sr@gmail.com</p>
         <p><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> San Rafael, Mendoza</p>
         <p><i class="fas fa-clock" style="margin-right: 10px;"></i> Lun-Vie: 8:00-13:00 hs</p>
+        <div class="social" style="justify-content: flex-start; margin-top: 15px;">
+          <a href="https://www.instagram.com/manzevo.sr/" target="_blank" title="Síguenos en Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
       </div>
     </div>
     
