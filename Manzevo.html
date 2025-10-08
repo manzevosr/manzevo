@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MANZEVO - Innovación y Tradición en Embutidos</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #0d1b2a;
+      --secondary: #1b263b;
+      --accent: #e63946;
+      --light: #f5f7fa;
+      --text: #1b263b;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--light);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Fade-in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+      background-size: cover;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-content h1 {
+      font-size: 3.5rem;
+      margin-bottom: 15px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .header-content p {
+      font-size: 1.4rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: var(--secondary);
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    nav a {
+      color: white;
+      padding: 18px 25px;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 500;
+      letter-spacing: 1px;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    nav a:hover {
+      background-color: #415a77;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: var(--accent);
+      transition: all 0.3s;
+      transform: translateX(-50%);
+    }
+
+    nav a:hover::after {
+      width: 80%;
+    }
+
+    section {
+      max-width: 1200px;
+      margin: 80px auto;
+      padding: 50px 30px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: var(--primary);
+      font-size: 2.2rem;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-size: 17px;
+      text-align: justify;
+    }
+
+    .highlight {
+      background: linear-gradient(120deg, #f9f9f9, #e9ecef);
+      padding: 25px;
+      border-radius: 10px;
+      border-left: 5px solid var(--accent);
+      margin: 25px 0;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .value-card {
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+      border-top: 4px solid var(--secondary);
+    }
+
+    .value-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .value-card i {
+      font-size: 2.5rem;
+      color: var(--secondary);
+      margin-bottom: 15px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .service-card {
+      background: #f9f9f9;
+      padding: 35px 25px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.07);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--accent);
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+    }
+
+    .service-card h3 {
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+
+    .service-card i {
+      font-size: 2.8rem;
+      color: var(--secondary);
+      margin-bottom: 20px;
+    }
+
+    .contact-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .contact-info {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .contact-info h3 {
+      margin-bottom: 25px;
+      color: var(--primary);
+      text-align: center;
+      font-size: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 15px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+    }
+
+    .contact-item i {
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-right: 15px;
+      width: 30px;
+      text-align: center;
+    }
+
+    .contact-form {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .contact-form h3 {
+      margin-bottom: 25px;
+      color: var(--primary);
+      text-align: center;
+      font-size: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 16px;
+      transition: border 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--secondary);
+      outline: none;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--secondary);
+      color: white;
+      padding: 14px 30px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+      width: 100%;
+    }
+
+    .btn:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      background-color: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+      margin-top: 80px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      text-align: left;
+    }
+
+    .footer-section h3 {
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    .social {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .social a {
+      color: white;
+      margin: 0 15px;
+      font-size: 1.8rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .social a:hover {
+      color: var(--accent);
+      transform: translateY(-5px);
+    }
+
+    .copyright {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+    }
+
+    .vision-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .vision-card {
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.07);
+      transition: all 0.3s;
+      border-top: 4px solid var(--accent);
+    }
+
+    .vision-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .vision-card h3 {
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+
+    .vision-card i {
+      font-size: 2.5rem;
+      color: var(--secondary);
+      margin-bottom: 15px;
+    }
+
+    /* Estilos para el modal de confirmación */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+      width: 90%;
+      animation: modalAppear 0.3s ease-out;
+    }
+
+    @keyframes modalAppear {
+      from {
+        opacity: 0;
+        transform: scale(0.8) translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .modal-content i {
+      font-size: 4rem;
+      color: #4CAF50;
+      margin-bottom: 20px;
+    }
+
+    .modal-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+
+    .modal-content p {
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+      color: var(--text);
+    }
+
+    .modal-btn {
+      background: var(--secondary);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .modal-btn:hover {
+      background: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      nav a {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .header-content h1 {
+        font-size: 2.5rem;
+      }
+      
+      section {
+        margin: 50px auto;
+        padding: 30px 20px;
+      }
+      
+      .modal-content {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="fade-in">
+    <div class="header-content">
+      <h1>MANZEVO</h1>
+      <p>Innovación y tradición en la elaboración de salames y embutidos</p>
+    </div>
+  </header>
+
+  <nav class="fade-in">
+    <a href="#inicio">Inicio</a>
+    <a href="#quienes-somos">Quiénes Somos</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#vision">Visión Futura</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <section id="inicio" class="fade-in">
+    <h2>Bienvenidos a MANZEVO</h2>
+    <p>MANZEVO es un emprendimiento innovador creado por estudiantes, dedicado al diseño y desarrollo de maquinaria automatizada para la elaboración de salames y embutidos de alta calidad. Combinamos nuestro entusiasmo por la tecnología con el respeto por las tradiciones artesanales, explorando soluciones que puedan mejorar la eficiencia sin comprometer la autenticidad del producto final.</p>
+    
+    <div class="highlight">
+      <p>Nuestra misión es investigar y desarrollar prototipos innovadores para la industria de embutidos, aprendiendo sobre automatización mientras respetamos los procesos tradicionales que dan carácter a estos productos típicos.</p>
+    </div>
+    
+    <div class="values-grid">
+      <div class="value-card">
+        <i class="fas fa-graduation-cap"></i>
+        <h3>Formación Continua</h3>
+        <p>Este proyecto forma parte de nuestro proceso de aprendizaje, aplicando conocimientos técnicos y científicos.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-history"></i>
+        <h3>Respeto por la Tradición</h3>
+        <p>Valoramos y estudiamos los procesos tradicionales que dan carácter a los productos regionales.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-lightbulb"></i>
+        <h3>Innovación Joven</h3>
+        <p>Aportamos una perspectiva fresca y soluciones creativas desde nuestra visión como jóvenes emprendedores.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="quienes-somos" class="fade-in">
+    <h2>Quiénes Somos</h2>
+    
+    <div class="highlight">
+      <p><strong>MANZEVO</strong> es un proyecto desarrollado por estudiantes de San Rafael, Mendoza. Nacimos en 2025 como una iniciativa que busca combinar el aprendizaje con el desarrollo de soluciones prácticas para la industria local de embutidos.</p>
+    </div>
+    
+    <h3 style="margin-top: 30px; margin-bottom: 20px; color: var(--secondary);">Nuestra Historia</h3>
+    <p>MANZEVO comenzó en 2025 cuando identificamos una oportunidad de mejorar los procesos de producción de salames en nuestra región. Observamos que pequeños productores enfrentaban dificultades para mantener la consistencia en sus procesos mientras preservaban las técnicas artesanales.</p>
+    
+    <p>Inspirados por esta necesidad, comenzamos a investigar y diseñar nuestro primer prototipo de máquina para la producción de salames, enfocándonos en simplificar procesos sin perder la esencia artesanal. Lo que empezó como una idea entre compañeros pronto se convirtió en una pasión por la innovación tecnológica aplicada a la tradición gastronómica.</p>
+    
+    <p>Hoy, MANZEVO representa el esfuerzo y la creatividad de jóvenes que creen en el potencial de la tecnología para generar soluciones con impacto positivo en su comunidad.</p>
+    
+    <h3 style="margin-top: 30px; margin-bottom: 20px; color: var(--secondary);">Nuestro Equipo</h3>
+    <p>Somos un grupo de estudiantes con intereses en tecnología, ingeniería y emprendimiento. Trabajamos con dedicación y curiosidad, aprendiendo constantemente sobre automatización y procesos productivos. Nuestra fuerza está en la capacidad de adaptación, la pasión por crear soluciones innovadoras y el compromiso con nuestro desarrollo profesional.</p>
+  </section>
+
+  <section id="servicios" class="fade-in">
+    <h2>Servicios</h2>
+    <p>Ofrecemos investigación, desarrollo de prototipos y asesoramiento basado en nuestro aprendizaje sobre automatización de procesos para la industria de embutidos.</p>
+    
+    <div class="services-grid">
+      <div class="service-card">
+        <i class="fas fa-drafting-compass"></i>
+        <h3>Diseño de Prototipos</h3>
+        <p>Desarrollamos modelos y prototipos conceptuales de máquinas para la producción de salames, aplicando conocimientos técnicos adquiridos en nuestra formación.</p>
+      </div>
+      
+      <div class="service-card">
+        <i class="fas fa-search"></i>
+        <h3>Investigación Técnica</h3>
+        <p>Realizamos estudios sobre procesos de producción de embutidos, identificando oportunidades de mejora mediante la automatización controlada.</p>
+      </div>
+      
+      <div class="service-card">
+        <i class="fas fa-chalkboard-teacher"></i>
+        <h3>Asesoramiento Especializado</h3>
+        <p>Compartimos nuestros hallazgos y aprendizajes con productores locales, ofreciendo una perspectiva joven sobre posibles mejoras en sus procesos.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="vision" class="fade-in">
+    <h2>Visión Futura</h2>
+    <p>Establecemos objetivos claros para nuestro desarrollo futuro en la industria de la automatización alimentaria.</p>
+    
+    <div class="vision-grid">
+      <div class="vision-card">
+        <i class="fas fa-university"></i>
+        <h3>Formación Profesional</h3>
+        <p>Aspiramos a continuar nuestros estudios en ingeniería y tecnología alimentaria para profesionalizar nuestros conocimientos.</p>
+      </div>
+      
+      <div class="vision-card">
+        <i class="fas fa-industry"></i>
+        <h3>Prototipos Funcionales</h3>
+        <p>Nuestro objetivo a mediano plazo es desarrollar prototipos funcionales que puedan ser probados en entornos productivos reales.</p>
+      </div>
+      
+      <div class="vision-card">
+        <i class="fas fa-handshake"></i>
+        <h3>Colaboración con Expertos</h3>
+        <p>Buscamos establecer alianzas con profesionales especializados que puedan guiarnos en el desarrollo de soluciones más robustas.</p>
+      </div>
+      
+      <div class="vision-card">
+        <i class="fas fa-rocket"></i>
+        <h3>Emprendimiento Formal</h3>
+        <p>Visualizamos MANZEVO como una empresa formal en el futuro, contribuyendo a la innovación tecnológica en la industria alimentaria argentina.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="fade-in">
+    <h2>Contacto</h2>
+    <p>Estamos entusiasmados por compartir nuestro proyecto y aprender de profesionales del sector. Contáctenos para conocer más sobre MANZEVO o para brindarnos orientación sobre nuestro desarrollo.</p>
+    
+    <div class="contact-container">
+      <div class="contact-info">
+        <h3>Información de Contacto</h3>
+        
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <strong>Email</strong><br>
+            manzevo.sr@gmail.com
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div>
+            <strong>Ubicación</strong><br>
+            San Rafael, Mendoza, Argentina
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <i class="fas fa-clock"></i>
+          <div>
+            <strong>Horario de Atención</strong><br>
+            Lunes a Viernes: 8:00 - 13:00 hs
+          </div>
+        </div>
+        
+        <div class="social">
+          <a href="https://www.instagram.com/manzevo.sr/" target="_blank" title="Síguenos en Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" title="Síguenos en Facebook">
+            <i class="fab fa-facebook"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="contact-form">
+        <h3>Envíanos un Mensaje</h3>
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Nombre completo</label>
+            <input type="text" id="name" name="name" placeholder="Ingresa tu nombre" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="Ingresa tu email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="subject">Asunto</label>
+            <input type="text" id="subject" name="subject" placeholder="Asunto del mensaje" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="message" rows="5" placeholder="Escribe tu mensaje aquí" required></textarea>
+          </div>
+          
+          <button type="submit" class="btn">Enviar Mensaje</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>MANZEVO</h3>
+        <p>Proyecto de estudiantes. Innovación y tradición en la elaboración de salames y embutidos.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Enlaces Rápidos</h3>
+        <p><a href="#inicio" style="color: white; text-decoration: none;">Inicio</a></p>
+        <p><a href="#quienes-somos" style="color: white; text-decoration: none;">Quiénes Somos</a></p>
+        <p><a href="#servicios" style="color: white; text-decoration: none;">Servicios</a></p>
+        <p><a href="#vision" style="color: white; text-decoration: none;">Visión Futura</a></p>
+        <p><a href="#contacto" style="color: white; text-decoration: none;">Contacto</a></p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Contacto</h3>
+        <p><i class="fas fa-envelope" style="margin-right: 10px;"></i> manzevo.sr@gmail.com</p>
+        <p><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> San Rafael, Mendoza</p>
+        <p><i class="fas fa-clock" style="margin-right: 10px;"></i> Lun-Vie: 8:00-13:00 hs</p>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>&copy; 2025 MANZEVO - Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <!-- Modal de confirmación -->
+  <div id="confirmationModal" class="modal-overlay">
+    <div class="modal-content">
+      <i class="fas fa-check-circle"></i>
+      <h3>¡Mensaje Enviado con Éxito!</h3>
+      <p>Hemos recibido tu mensaje correctamente. Te contactaremos a la brevedad.</p>
+      <button class="modal-btn" onclick="closeModal()">Aceptar</button>
+    </div>
+  </div>
+
+  <script>
+    // Fade-in al hacer scroll
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = { threshold: 0.15 };
+
+    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+
+    // Smooth scrolling para los enlaces de navegación
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Funciones para el modal
+    function showModal() {
+      const modal = document.getElementById('confirmationModal');
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('confirmationModal');
+      modal.style.display = 'none';
+    }
+
+    // Cerrar modal al hacer clic fuera del contenido
+    document.getElementById('confirmationModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+
+    // Manejo del formulario con AJAX
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Mostrar el modal de confirmación
+      showModal();
+      
+      // Enviar formulario mediante AJAX
+      const formData = new FormData(this);
+      
+      fetch('https://formspree.io/f/xldpwnyv', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          // El formulario se envió correctamente
+          console.log('Formulario enviado con éxito');
+          
+          // Limpiar el formulario después de enviar
+          setTimeout(() => {
+            document.getElementById('contactForm').reset();
+          }, 500);
+          
+        } else {
+          throw new Error('Error en el envío');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // Mostrar mensaje de error en el modal
+        const modalContent = document.querySelector('.modal-content');
+        modalContent.innerHTML = `
+          <i class="fas fa-exclamation-triangle" style="color: #e63946;"></i>
+          <h3>Error al Enviar</h3>
+          <p>Hubo un problema al enviar tu mensaje. Por favor, intenta nuevamente.</p>
+          <button class="modal-btn" onclick="closeModal()">Reintentar</button>
+        `;
+      });
+    });
+
+    // Cerrar modal automáticamente después de 5 segundos
+    document.getElementById('confirmationModal').addEventListener('click', function() {
+      setTimeout(closeModal, 5000);
+    });
+  </script>
+
+</body>
+</html>
