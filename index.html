@@ -24,6 +24,7 @@
     
     html {
       font-size: var(--base-font-size);
+      scroll-behavior: smooth;
     }
     
     body {
@@ -86,56 +87,132 @@
       margin: 0 auto;
     }
 
-    /* Navegación responsiva */
-    .nav-container {
-      background-color: var(--secondary);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    nav {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    nav a {
+    /* Botón de menú hamburguesa */
+    .menu-toggle {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 1000;
+      background: var(--secondary);
       color: white;
-      padding: 1rem 0.8rem;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+
+    .menu-toggle.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .menu-toggle:hover {
+      background: var(--primary);
+      transform: scale(1.05);
+    }
+
+    .menu-toggle i {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-toggle.active i {
+      transform: rotate(90deg);
+    }
+
+    /* Menú lateral */
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 280px;
+      height: 100%;
+      background: var(--primary);
+      z-index: 999;
+      transition: all 0.4s ease;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+      overflow-y: auto;
+    }
+
+    .side-menu.active {
+      left: 0;
+    }
+
+    .side-menu-header {
+      padding: 1.5rem;
+      background: var(--secondary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .side-menu-header h3 {
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    .close-menu {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .close-menu:hover {
+      transform: scale(1.1);
+    }
+
+    .side-menu nav {
+      padding: 1rem 0;
+    }
+
+    .side-menu nav a {
+      display: block;
+      color: white;
+      padding: 1rem 1.5rem;
       text-decoration: none;
-      text-transform: uppercase;
-      font-weight: 500;
-      letter-spacing: 1px;
       transition: all 0.3s;
-      position: relative;
-      font-size: 0.9rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .side-menu nav a:hover {
+      background: var(--secondary);
+      padding-left: 2rem;
+    }
+
+    .side-menu nav a i {
+      margin-right: 0.8rem;
+      width: 20px;
       text-align: center;
-      flex: 1;
-      min-width: 120px;
     }
 
-    nav a:hover {
-      background-color: #415a77;
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
     }
 
-    nav a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 3px;
-      background: var(--accent);
-      transition: all 0.3s;
-      transform: translateX(-50%);
-    }
-
-    nav a:hover::after {
-      width: 80%;
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
     }
 
     section {
@@ -537,60 +614,12 @@
         margin: 3rem auto;
         padding: 2.5rem;
       }
-      
-      nav a {
-        padding: 1rem 1.5rem;
-        font-size: 1rem;
-        flex: none;
-      }
     }
 
     @media (min-width: 1024px) {
       section {
         margin: 4rem auto;
         padding: 3rem;
-      }
-    }
-
-    /* Estilos para el menú móvil */
-    .mobile-menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-      padding: 1rem;
-    }
-
-    @media (max-width: 767px) {
-      nav {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 0;
-      }
-      
-      nav a {
-        width: 100%;
-        text-align: center;
-        padding: 1rem;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-      }
-      
-      nav a:last-child {
-        border-bottom: none;
-      }
-      
-      .highlight {
-        padding: 1rem;
-      }
-      
-      .value-card, .service-card, .vision-card {
-        padding: 1.5rem 1rem;
-      }
-      
-      .contact-info, .contact-form {
-        padding: 1.5rem 1rem;
       }
     }
 
@@ -630,22 +659,37 @@
 </head>
 <body>
 
+  <!-- Botón del menú hamburguesa -->
+  <button class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Menú lateral -->
+  <div class="side-menu" id="sideMenu">
+    <div class="side-menu-header">
+      <h3>MANZEVO</h3>
+      <button class="close-menu" id="closeMenu">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <nav>
+      <a href="#inicio"><i class="fas fa-home"></i> Inicio</a>
+      <a href="#quienes-somos"><i class="fas fa-users"></i> Quiénes Somos</a>
+      <a href="#servicios"><i class="fas fa-cogs"></i> Servicios</a>
+      <a href="#vision"><i class="fas fa-eye"></i> Visión Futura</a>
+      <a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a>
+    </nav>
+  </div>
+
+  <!-- Overlay para cerrar menú al hacer clic fuera -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+
   <header class="fade-in">
     <div class="header-content">
       <h1>MANZEVO</h1>
       <p>Innovación y tradición en la elaboración de salames y embutidos</p>
     </div>
   </header>
-
-  <div class="nav-container">
-    <nav class="fade-in">
-      <a href="#inicio">Inicio</a>
-      <a href="#quienes-somos">Quiénes Somos</a>
-      <a href="#servicios">Servicios</a>
-      <a href="#vision">Visión Futura</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-  </div>
 
   <section id="inicio" class="fade-in">
     <h2>Bienvenidos a MANZEVO</h2>
@@ -861,6 +905,43 @@
   </div>
 
   <script>
+    // Elementos del menú
+    const menuToggle = document.getElementById('menuToggle');
+    const sideMenu = document.getElementById('sideMenu');
+    const closeMenu = document.getElementById('closeMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const menuLinks = document.querySelectorAll('.side-menu nav a');
+
+    // Mostrar/ocultar menú
+    menuToggle.addEventListener('click', () => {
+      sideMenu.classList.add('active');
+      menuOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    function closeSideMenu() {
+      sideMenu.classList.remove('active');
+      menuOverlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    closeMenu.addEventListener('click', closeSideMenu);
+    menuOverlay.addEventListener('click', closeSideMenu);
+
+    // Cerrar menú al hacer clic en un enlace
+    menuLinks.forEach(link => {
+      link.addEventListener('click', closeSideMenu);
+    });
+
+    // Mostrar/ocultar botón del menú al hacer scroll
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        menuToggle.classList.add('visible');
+      } else {
+        menuToggle.classList.remove('visible');
+      }
+    });
+
     // Fade-in al hacer scroll
     const faders = document.querySelectorAll('.fade-in');
     const appearOptions = { threshold: 0.15 };
@@ -878,7 +959,7 @@
     });
 
     // Smooth scrolling para los enlaces de navegación
-    document.querySelectorAll('nav a').forEach(anchor => {
+    document.querySelectorAll('.side-menu nav a').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
