@@ -197,6 +197,51 @@
       text-align: center;
     }
 
+    /* Selector de idioma */
+    .language-selector {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .language-selector h4 {
+      color: white;
+      margin-bottom: 0.8rem;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .language-selector h4 i {
+      margin-right: 0.5rem;
+    }
+
+    .language-options {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .lang-btn {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 0.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+
+    .lang-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
     .menu-overlay {
       position: fixed;
       top: 0;
@@ -672,12 +717,23 @@
         <i class="fas fa-times"></i>
       </button>
     </div>
+    
+    <!-- Selector de idioma -->
+    <div class="language-selector">
+      <h4><i class="fas fa-globe"></i> Idioma / Language / Idioma</h4>
+      <div class="language-options">
+        <button class="lang-btn active" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="pt">PT</button>
+      </div>
+    </div>
+    
     <nav>
-      <a href="#inicio"><i class="fas fa-home"></i> Inicio</a>
-      <a href="#quienes-somos"><i class="fas fa-users"></i> Quiénes Somos</a>
-      <a href="#servicios"><i class="fas fa-cogs"></i> Servicios</a>
-      <a href="#vision"><i class="fas fa-eye"></i> Visión Futura</a>
-      <a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a>
+      <a href="#inicio"><i class="fas fa-home"></i> <span data-translate="menu_home">Inicio</span></a>
+      <a href="#quienes-somos"><i class="fas fa-users"></i> <span data-translate="menu_about">Quiénes Somos</span></a>
+      <a href="#servicios"><i class="fas fa-cogs"></i> <span data-translate="menu_services">Servicios</span></a>
+      <a href="#vision"><i class="fas fa-eye"></i> <span data-translate="menu_vision">Visión Futura</span></a>
+      <a href="#contacto"><i class="fas fa-envelope"></i> <span data-translate="menu_contact">Contacto</span></a>
     </nav>
   </div>
 
@@ -686,124 +742,124 @@
 
   <header class="fade-in">
     <div class="header-content">
-      <h1>MANZEVO</h1>
-      <p>Innovación y tradición en la elaboración de salames y embutidos</p>
+      <h1 data-translate="header_title">MANZEVO</h1>
+      <p data-translate="header_subtitle">Innovación y tradición en la elaboración de salames y embutidos</p>
     </div>
   </header>
 
   <section id="inicio" class="fade-in">
-    <h2>Bienvenidos a MANZEVO</h2>
-    <p>MANZEVO es un emprendimiento innovador creado por estudiantes, dedicado al diseño y desarrollo de maquinaria automatizada para la elaboración de salames y embutidos de alta calidad. Combinamos nuestro entusiasmo por la tecnología con el respeto por las tradiciones artesanales, explorando soluciones que puedan mejorar la eficiencia sin comprometer la autenticidad del producto final.</p>
+    <h2 data-translate="welcome_title">Bienvenidos a MANZEVO</h2>
+    <p data-translate="welcome_text1">MANZEVO es un emprendimiento innovador creado por estudiantes, dedicado al diseño y desarrollo de maquinaria automatizada para la elaboración de salames y embutidos de alta calidad. Combinamos nuestro entusiasmo por la tecnología con el respeto por las tradiciones artesanales, explorando soluciones que puedan mejorar la eficiencia sin comprometer la autenticidad del producto final.</p>
     
     <div class="highlight">
-      <p>Nuestra misión es investigar y desarrollar prototipos innovadores para la industria de embutidos, aprendiendo sobre automatización mientras respetamos los procesos tradicionales que dan carácter a estos productos típicos.</p>
+      <p data-translate="welcome_text2">Nuestra misión es investigar y desarrollar prototipos innovadores para la industria de embutidos, aprendiendo sobre automatización mientras respetamos los procesos tradicionales que dan carácter a estos productos típicos.</p>
     </div>
     
     <div class="values-grid">
       <div class="value-card">
         <i class="fas fa-graduation-cap"></i>
-        <h3>Formación Continua</h3>
-        <p>Este proyecto forma parte de nuestro proceso de aprendizaje, aplicando conocimientos técnicos y científicos.</p>
+        <h3 data-translate="value1_title">Formación Continua</h3>
+        <p data-translate="value1_text">Este proyecto forma parte de nuestro proceso de aprendizaje, aplicando conocimientos técnicos y científicos.</p>
       </div>
       <div class="value-card">
         <i class="fas fa-history"></i>
-        <h3>Respeto por la Tradición</h3>
-        <p>Valoramos y estudiamos los procesos tradicionales que dan carácter a los productos regionales.</p>
+        <h3 data-translate="value2_title">Respeto por la Tradición</h3>
+        <p data-translate="value2_text">Valoramos y estudiamos los procesos tradicionales que dan carácter a los productos regionales.</p>
       </div>
       <div class="value-card">
         <i class="fas fa-lightbulb"></i>
-        <h3>Innovación Joven</h3>
-        <p>Aportamos una perspectiva fresca y soluciones creativas desde nuestra visión como jóvenes emprendedores.</p>
+        <h3 data-translate="value3_title">Innovación Joven</h3>
+        <p data-translate="value3_text">Aportamos una perspectiva fresca y soluciones creativas desde nuestra visión como jóvenes emprendedores.</p>
       </div>
     </div>
   </section>
 
   <section id="quienes-somos" class="fade-in">
-    <h2>Quiénes Somos</h2>
+    <h2 data-translate="about_title">Quiénes Somos</h2>
     
     <div class="highlight">
-      <p><strong>MANZEVO</strong> es un proyecto desarrollado por estudiantes de San Rafael, Mendoza. Nacimos en 2025 como una iniciativa que busca combinar el aprendizaje con el desarrollo de soluciones prácticas para la industria local de embutidos.</p>
+      <p><strong data-translate="about_highlight1">MANZEVO</strong> <span data-translate="about_highlight2">es un proyecto desarrollado por estudiantes de San Rafael, Mendoza. Nacimos en 2025 como una iniciativa que busca combinar el aprendizaje con el desarrollo de soluciones prácticas para la industria local de embutidos.</span></p>
     </div>
     
-    <h3 style="margin-top: 1.5rem; margin-bottom: 1rem; color: var(--secondary);">Nuestra Historia</h3>
-    <p>MANZEVO comenzó en 2025 cuando identificamos una oportunidad de mejorar los procesos de producción de salames en nuestra región. Observamos que pequeños productores enfrentaban dificultades para mantener la consistencia en sus procesos mientras preservaban las técnicas artesanales.</p>
+    <h3 style="margin-top: 1.5rem; margin-bottom: 1rem; color: var(--secondary);" data-translate="about_history_title">Nuestra Historia</h3>
+    <p data-translate="about_history_text1">MANZEVO comenzó en 2025 cuando identificamos una oportunidad de mejorar los procesos de producción de salames en nuestra región. Observamos que pequeños productores enfrentaban dificultades para mantener la consistencia en sus procesos mientras preservaban las técnicas artesanales.</p>
     
-    <p>Inspirados por esta necesidad, comenzamos a investigar y diseñar nuestro primer prototipo de máquina para la producción de salames, enfocándonos en simplificar procesos sin perder la esencia artesanal. Lo que empezó como una idea entre compañeros pronto se convirtió en una pasión por la innovación tecnológica aplicada a la tradición gastronómica.</p>
+    <p data-translate="about_history_text2">Inspirados por esta necesidad, comenzamos a investigar y diseñar nuestro primer prototipo de máquina para la producción de salames, enfocándonos en simplificar procesos sin perder la esencia artesanal. Lo que empezó como una idea entre compañeros pronto se convirtió en una pasión por la innovación tecnológica aplicada a la tradición gastronómica.</p>
     
-    <p>Hoy, MANZEVO representa el esfuerzo y la creatividad de jóvenes que creen en el potencial de la tecnología para generar soluciones con impacto positivo en su comunidad.</p>
+    <p data-translate="about_history_text3">Hoy, MANZEVO representa el esfuerzo y la creatividad de jóvenes que creen en el potencial de la tecnología para generar soluciones con impacto positivo en su comunidad.</p>
     
-    <h3 style="margin-top: 1.5rem; margin-bottom: 1rem; color: var(--secondary);">Nuestro Equipo</h3>
-    <p>Somos un grupo de estudiantes con intereses en tecnología, ingeniería y emprendimiento. Trabajamos con dedicación y curiosidad, aprendiendo constantemente sobre automatización y procesos productivos. Nuestra fuerza está en la capacidad de adaptación, la pasión por crear soluciones innovadoras y el compromiso con nuestro desarrollo profesional.</p>
+    <h3 style="margin-top: 1.5rem; margin-bottom: 1rem; color: var(--secondary);" data-translate="about_team_title">Nuestro Equipo</h3>
+    <p data-translate="about_team_text">Somos un grupo de estudiantes con intereses en tecnología, ingeniería y emprendimiento. Trabajamos con dedicación y curiosidad, aprendiendo constantemente sobre automatización y procesos productivos. Nuestra fuerza está en la capacidad de adaptación, la pasión por crear soluciones innovadoras y el compromiso con nuestro desarrollo profesional.</p>
   </section>
 
   <section id="servicios" class="fade-in">
-    <h2>Servicios</h2>
-    <p>Ofrecemos investigación, desarrollo de prototipos y asesoramiento basado en nuestro aprendizaje sobre automatización de procesos para la industria de embutidos.</p>
+    <h2 data-translate="services_title">Servicios</h2>
+    <p data-translate="services_intro">Ofrecemos investigación, desarrollo de prototipos y asesoramiento basado en nuestro aprendizaje sobre automatización de procesos para la industria de embutidos.</p>
     
     <div class="services-grid">
       <div class="service-card">
         <i class="fas fa-drafting-compass"></i>
-        <h3>Diseño de Prototipos</h3>
-        <p>Desarrollamos modelos y prototipos conceptuales de máquinas para la producción de salames, aplicando conocimientos técnicos adquiridos en nuestra formación.</p>
+        <h3 data-translate="service1_title">Diseño de Prototipos</h3>
+        <p data-translate="service1_text">Desarrollamos modelos y prototipos conceptuales de máquinas para la producción de salames, aplicando conocimientos técnicos adquiridos en nuestra formación.</p>
       </div>
       
       <div class="service-card">
         <i class="fas fa-search"></i>
-        <h3>Investigación Técnica</h3>
-        <p>Realizamos estudios sobre procesos de producción de embutidos, identificando oportunidades de mejora mediante la automatización controlada.</p>
+        <h3 data-translate="service2_title">Investigación Técnica</h3>
+        <p data-translate="service2_text">Realizamos estudios sobre procesos de producción de embutidos, identificando oportunidades de mejora mediante la automatización controlada.</p>
       </div>
       
       <div class="service-card">
         <i class="fas fa-chalkboard-teacher"></i>
-        <h3>Asesoramiento Especializado</h3>
-        <p>Compartimos nuestros hallazgos y aprendizajes con productores locales, ofreciendo una perspectiva joven sobre posibles mejoras en sus procesos.</p>
+        <h3 data-translate="service3_title">Asesoramiento Especializado</h3>
+        <p data-translate="service3_text">Compartimos nuestros hallazgos y aprendizajes con productores locales, ofreciendo una perspectiva joven sobre posibles mejoras en sus procesos.</p>
       </div>
     </div>
   </section>
 
   <section id="vision" class="fade-in">
-    <h2>Visión Futura</h2>
-    <p>Establecemos objetivos claros para nuestro desarrollo futuro en la industria de la automatización alimentaria.</p>
+    <h2 data-translate="vision_title">Visión Futura</h2>
+    <p data-translate="vision_intro">Establecemos objetivos claros para nuestro desarrollo futuro en la industria de la automatización alimentaria.</p>
     
     <div class="vision-grid">
       <div class="vision-card">
         <i class="fas fa-university"></i>
-        <h3>Formación Profesional</h3>
-        <p>Aspiramos a continuar nuestros estudios en ingeniería y tecnología alimentaria para profesionalizar nuestros conocimientos.</p>
+        <h3 data-translate="vision1_title">Formación Profesional</h3>
+        <p data-translate="vision1_text">Aspiramos a continuar nuestros estudios en ingeniería y tecnología alimentaria para profesionalizar nuestros conocimientos.</p>
       </div>
       
       <div class="vision-card">
         <i class="fas fa-industry"></i>
-        <h3>Prototipos Funcionales</h3>
-        <p>Nuestro objetivo a mediano plazo es desarrollar prototipos funcionales que puedan ser probados en entornos productivos reales.</p>
+        <h3 data-translate="vision2_title">Prototipos Funcionales</h3>
+        <p data-translate="vision2_text">Nuestro objetivo a mediano plazo es desarrollar prototipos funcionales que puedan ser probados en entornos productivos reales.</p>
       </div>
       
       <div class="vision-card">
         <i class="fas fa-handshake"></i>
-        <h3>Colaboración con Expertos</h3>
-        <p>Buscamos establecer alianzas con profesionales especializados que puedan guiarnos en el desarrollo de soluciones más robustas.</p>
+        <h3 data-translate="vision3_title">Colaboración con Expertos</h3>
+        <p data-translate="vision3_text">Buscamos establecer alianzas con profesionales especializados que puedan guiarnos en el desarrollo de soluciones más robustas.</p>
       </div>
       
       <div class="vision-card">
         <i class="fas fa-rocket"></i>
-        <h3>Emprendimiento Formal</h3>
-        <p>Visualizamos MANZEVO como una empresa formal en el futuro, contribuyendo a la innovación tecnológica en la industria alimentaria argentina.</p>
+        <h3 data-translate="vision4_title">Emprendimiento Formal</h3>
+        <p data-translate="vision4_text">Visualizamos MANZEVO como una empresa formal en el futuro, contribuyendo a la innovación tecnológica en la industria alimentaria argentina.</p>
       </div>
     </div>
   </section>
 
   <section id="contacto" class="fade-in">
-    <h2>Contacto</h2>
-    <p>Estamos entusiasmados por compartir nuestro proyecto y aprender de profesionales del sector. Contáctenos para conocer más sobre MANZEVO o para brindarnos orientación sobre nuestro desarrollo.</p>
+    <h2 data-translate="contact_title">Contacto</h2>
+    <p data-translate="contact_intro">Estamos entusiasmados por compartir nuestro proyecto y aprender de profesionales del sector. Contáctenos para conocer más sobre MANZEVO o para brindarnos orientación sobre nuestro desarrollo.</p>
     
     <div class="contact-container">
       <div class="contact-info">
-        <h3>Información de Contacto</h3>
+        <h3 data-translate="contact_info_title">Información de Contacto</h3>
         
         <div class="contact-item">
           <i class="fas fa-envelope"></i>
           <div>
-            <strong>Email</strong><br>
+            <strong data-translate="contact_email">Email</strong><br>
             manzevo.sr@gmail.com
           </div>
         </div>
@@ -811,7 +867,7 @@
         <div class="contact-item">
           <i class="fas fa-map-marker-alt"></i>
           <div>
-            <strong>Ubicación</strong><br>
+            <strong data-translate="contact_location">Ubicación</strong><br>
             San Rafael, Mendoza, Argentina
           </div>
         </div>
@@ -819,7 +875,7 @@
         <div class="contact-item">
           <i class="fas fa-clock"></i>
           <div>
-            <strong>Horario de Atención</strong><br>
+            <strong data-translate="contact_hours">Horario de Atención</strong><br>
             Lunes a Viernes: 8:00 - 13:00 hs
           </div>
         </div>
@@ -832,29 +888,29 @@
       </div>
       
       <div class="contact-form">
-        <h3>Envíanos un Mensaje</h3>
+        <h3 data-translate="contact_form_title">Envíanos un Mensaje</h3>
         <form id="contactForm">
           <div class="form-group">
-            <label for="name">Nombre completo</label>
+            <label for="name" data-translate="contact_form_name">Nombre completo</label>
             <input type="text" id="name" name="name" placeholder="Ingresa tu nombre" required>
           </div>
           
           <div class="form-group">
-            <label for="email">Correo electrónico</label>
+            <label for="email" data-translate="contact_form_email">Correo electrónico</label>
             <input type="email" id="email" name="email" placeholder="Ingresa tu email" required>
           </div>
           
           <div class="form-group">
-            <label for="subject">Asunto</label>
+            <label for="subject" data-translate="contact_form_subject">Asunto</label>
             <input type="text" id="subject" name="subject" placeholder="Asunto del mensaje" required>
           </div>
           
           <div class="form-group">
-            <label for="message">Mensaje</label>
+            <label for="message" data-translate="contact_form_message">Mensaje</label>
             <textarea id="message" name="message" rows="5" placeholder="Escribe tu mensaje aquí" required></textarea>
           </div>
           
-          <button type="submit" class="btn">Enviar Mensaje</button>
+          <button type="submit" class="btn" data-translate="contact_form_button">Enviar Mensaje</button>
         </form>
       </div>
     </div>
@@ -863,24 +919,24 @@
   <footer>
     <div class="footer-content">
       <div class="footer-section">
-        <h3>MANZEVO</h3>
-        <p>Proyecto de estudiantes. Innovación y tradición en la elaboración de salames y embutidos.</p>
+        <h3 data-translate="footer_title">MANZEVO</h3>
+        <p data-translate="footer_description">Proyecto de estudiantes. Innovación y tradición en la elaboración de salames y embutidos.</p>
       </div>
       
       <div class="footer-section">
-        <h3>Enlaces Rápidos</h3>
-        <p><a href="#inicio" style="color: white; text-decoration: none;">Inicio</a></p>
-        <p><a href="#quienes-somos" style="color: white; text-decoration: none;">Quiénes Somos</a></p>
-        <p><a href="#servicios" style="color: white; text-decoration: none;">Servicios</a></p>
-        <p><a href="#vision" style="color: white; text-decoration: none;">Visión Futura</a></p>
-        <p><a href="#contacto" style="color: white; text-decoration: none;">Contacto</a></p>
+        <h3 data-translate="footer_links">Enlaces Rápidos</h3>
+        <p><a href="#inicio" style="color: white; text-decoration: none;" data-translate="menu_home">Inicio</a></p>
+        <p><a href="#quienes-somos" style="color: white; text-decoration: none;" data-translate="menu_about">Quiénes Somos</a></p>
+        <p><a href="#servicios" style="color: white; text-decoration: none;" data-translate="menu_services">Servicios</a></p>
+        <p><a href="#vision" style="color: white; text-decoration: none;" data-translate="menu_vision">Visión Futura</a></p>
+        <p><a href="#contacto" style="color: white; text-decoration: none;" data-translate="menu_contact">Contacto</a></p>
       </div>
       
       <div class="footer-section">
-        <h3>Contacto</h3>
+        <h3 data-translate="contact_info_title">Contacto</h3>
         <p><i class="fas fa-envelope" style="margin-right: 10px;"></i> manzevo.sr@gmail.com</p>
         <p><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> San Rafael, Mendoza</p>
-        <p><i class="fas fa-clock" style="margin-right: 10px;"></i> Lun-Vie: 8:00-13:00 hs</p>
+        <p><i class="fas fa-clock" style="margin-right: 10px;"></i> <span data-translate="contact_hours_footer">Lun-Vie: 8:00-13:00 hs</span></p>
         <div class="social" style="justify-content: flex-start; margin-top: 15px;">
           <a href="https://www.instagram.com/manzevo.sr/" target="_blank" title="Síguenos en Instagram">
             <i class="fab fa-instagram"></i>
@@ -890,155 +946,3 @@
     </div>
     
     <div class="copyright">
-      <p>&copy; 2025 MANZEVO - Todos los derechos reservados</p>
-    </div>
-  </footer>
-
-  <!-- Modal de confirmación -->
-  <div id="confirmationModal" class="modal-overlay">
-    <div class="modal-content">
-      <i class="fas fa-check-circle"></i>
-      <h3>¡Mensaje Enviado con Éxito!</h3>
-      <p>Hemos recibido tu mensaje correctamente. Te contactaremos a la brevedad.</p>
-      <button class="modal-btn" onclick="closeModal()">Aceptar</button>
-    </div>
-  </div>
-
-  <script>
-    // Elementos del menú
-    const menuToggle = document.getElementById('menuToggle');
-    const sideMenu = document.getElementById('sideMenu');
-    const closeMenu = document.getElementById('closeMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
-    const menuLinks = document.querySelectorAll('.side-menu nav a');
-
-    // Mostrar/ocultar menú
-    menuToggle.addEventListener('click', () => {
-      sideMenu.classList.add('active');
-      menuOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-
-    function closeSideMenu() {
-      sideMenu.classList.remove('active');
-      menuOverlay.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-
-    closeMenu.addEventListener('click', closeSideMenu);
-    menuOverlay.addEventListener('click', closeSideMenu);
-
-    // Cerrar menú al hacer clic en un enlace
-    menuLinks.forEach(link => {
-      link.addEventListener('click', closeSideMenu);
-    });
-
-    // Mostrar/ocultar botón del menú al hacer scroll
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 100) {
-        menuToggle.classList.add('visible');
-      } else {
-        menuToggle.classList.remove('visible');
-      }
-    });
-
-    // Fade-in al hacer scroll
-    const faders = document.querySelectorAll('.fade-in');
-    const appearOptions = { threshold: 0.15 };
-
-    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      });
-    }, appearOptions);
-
-    faders.forEach(fader => {
-      appearOnScroll.observe(fader);
-    });
-
-    // Smooth scrolling para los enlaces de navegación
-    document.querySelectorAll('.side-menu nav a').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        
-        window.scrollTo({
-          top: targetElement.offsetTop - 80,
-          behavior: 'smooth'
-        });
-      });
-    });
-
-    // Funciones para el modal
-    function showModal() {
-      const modal = document.getElementById('confirmationModal');
-      modal.style.display = 'flex';
-    }
-
-    function closeModal() {
-      const modal = document.getElementById('confirmationModal');
-      modal.style.display = 'none';
-    }
-
-    // Cerrar modal al hacer clic fuera del contenido
-    document.getElementById('confirmationModal').addEventListener('click', function(e) {
-      if (e.target === this) {
-        closeModal();
-      }
-    });
-
-    // Manejo del formulario con AJAX
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // Mostrar el modal de confirmación
-      showModal();
-      
-      // Enviar formulario mediante AJAX
-      const formData = new FormData(this);
-      
-      fetch('https://formspree.io/f/xldpwnyv', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      })
-      .then(response => {
-        if (response.ok) {
-          // El formulario se envió correctamente
-          console.log('Formulario enviado con éxito');
-          
-          // Limpiar el formulario después de enviar
-          setTimeout(() => {
-            document.getElementById('contactForm').reset();
-          }, 500);
-          
-        } else {
-          throw new Error('Error en el envío');
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        // Mostrar mensaje de error en el modal
-        const modalContent = document.querySelector('.modal-content');
-        modalContent.innerHTML = `
-          <i class="fas fa-exclamation-triangle" style="color: #e63946;"></i>
-          <h3>Error al Enviar</h3>
-          <p>Hubo un problema al enviar tu mensaje. Por favor, intenta nuevamente.</p>
-          <button class="modal-btn" onclick="closeModal()">Reintentar</button>
-        `;
-      });
-    });
-
-    // Cerrar modal automáticamente después de 5 segundos
-    document.getElementById('confirmationModal').addEventListener('click', function() {
-      setTimeout(closeModal, 5000);
-    });
-  </script>
-
-</body>
-</html>
