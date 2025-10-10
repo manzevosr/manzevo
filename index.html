@@ -946,3 +946,464 @@
     </div>
     
     <div class="copyright">
+      <p>&copy; 2025 MANZEVO - <span data-translate="footer_rights">Todos los derechos reservados</span></p>
+    </div>
+  </footer>
+
+  <!-- Modal de confirmación -->
+  <div id="confirmationModal" class="modal-overlay">
+    <div class="modal-content">
+      <i class="fas fa-check-circle"></i>
+      <h3 data-translate="modal_success_title">¡Mensaje Enviado con Éxito!</h3>
+      <p data-translate="modal_success_text">Hemos recibido tu mensaje correctamente. Te contactaremos a la brevedad.</p>
+      <button class="modal-btn" onclick="closeModal()" data-translate="modal_button">Aceptar</button>
+    </div>
+  </div>
+
+  <script>
+    // Traducciones para los diferentes idiomas
+    const translations = {
+      es: {
+        // Menú
+        "menu_home": "Inicio",
+        "menu_about": "Quiénes Somos",
+        "menu_services": "Servicios",
+        "menu_vision": "Visión Futura",
+        "menu_contact": "Contacto",
+        
+        // Header
+        "header_title": "MANZEVO",
+        "header_subtitle": "Innovación y tradición en la elaboración de salames y embutidos",
+        
+        // Sección Inicio
+        "welcome_title": "Bienvenidos a MANZEVO",
+        "welcome_text1": "MANZEVO es un emprendimiento innovador creado por estudiantes, dedicado al diseño y desarrollo de maquinaria automatizada para la elaboración de salames y embutidos de alta calidad. Combinamos nuestro entusiasmo por la tecnología con el respeto por las tradiciones artesanales, explorando soluciones que puedan mejorar la eficiencia sin comprometer la autenticidad del producto final.",
+        "welcome_text2": "Nuestra misión es investigar y desarrollar prototipos innovadores para la industria de embutidos, aprendiendo sobre automatización mientras respetamos los procesos tradicionales que dan carácter a estos productos típicos.",
+        "value1_title": "Formación Continua",
+        "value1_text": "Este proyecto forma parte de nuestro proceso de aprendizaje, aplicando conocimientos técnicos y científicos.",
+        "value2_title": "Respeto por la Tradición",
+        "value2_text": "Valoramos y estudiamos los procesos tradicionales que dan carácter a los productos regionales.",
+        "value3_title": "Innovación Joven",
+        "value3_text": "Aportamos una perspectiva fresca y soluciones creativas desde nuestra visión como jóvenes emprendedores.",
+        
+        // Sección Quiénes Somos
+        "about_title": "Quiénes Somos",
+        "about_highlight1": "MANZEVO",
+        "about_highlight2": "es un proyecto desarrollado por estudiantes de San Rafael, Mendoza. Nacimos en 2025 como una iniciativa que busca combinar el aprendizaje con el desarrollo de soluciones prácticas para la industria local de embutidos.",
+        "about_history_title": "Nuestra Historia",
+        "about_history_text1": "MANZEVO comenzó en 2025 cuando identificamos una oportunidad de mejorar los procesos de producción de salames en nuestra región. Observamos que pequeños productores enfrentaban dificultades para mantener la consistencia en sus procesos mientras preservaban las técnicas artesanales.",
+        "about_history_text2": "Inspirados por esta necesidad, comenzamos a investigar y diseñar nuestro primer prototipo de máquina para la producción de salames, enfocándonos en simplificar procesos sin perder la esencia artesanal. Lo que empezó como una idea entre compañeros pronto se convirtió en una pasión por la innovación tecnológica aplicada a la tradición gastronómica.",
+        "about_history_text3": "Hoy, MANZEVO representa el esfuerzo y la creatividad de jóvenes que creen en el potencial de la tecnología para generar soluciones con impacto positivo en su comunidad.",
+        "about_team_title": "Nuestro Equipo",
+        "about_team_text": "Somos un grupo de estudiantes con intereses en tecnología, ingeniería y emprendimiento. Trabajamos con dedicación y curiosidad, aprendiendo constantemente sobre automatización y procesos productivos. Nuestra fuerza está en la capacidad de adaptación, la pasión por crear soluciones innovadoras y el compromiso con nuestro desarrollo profesional.",
+        
+        // Sección Servicios
+        "services_title": "Servicios",
+        "services_intro": "Ofrecemos investigación, desarrollo de prototipos y asesoramiento basado en nuestro aprendizaje sobre automatización de procesos para la industria de embutidos.",
+        "service1_title": "Diseño de Prototipos",
+        "service1_text": "Desarrollamos modelos y prototipos conceptuales de máquinas para la producción de salames, aplicando conocimientos técnicos adquiridos en nuestra formación.",
+        "service2_title": "Investigación Técnica",
+        "service2_text": "Realizamos estudios sobre procesos de producción de embutidos, identificando oportunidades de mejora mediante la automatización controlada.",
+        "service3_title": "Asesoramiento Especializado",
+        "service3_text": "Compartimos nuestros hallazgos y aprendizajes con productores locales, ofreciendo una perspectiva joven sobre posibles mejoras en sus procesos.",
+        
+        // Sección Visión
+        "vision_title": "Visión Futura",
+        "vision_intro": "Establecemos objetivos claros para nuestro desarrollo futuro en la industria de la automatización alimentaria.",
+        "vision1_title": "Formación Profesional",
+        "vision1_text": "Aspiramos a continuar nuestros estudios en ingeniería y tecnología alimentaria para profesionalizar nuestros conocimientos.",
+        "vision2_title": "Prototipos Funcionales",
+        "vision2_text": "Nuestro objetivo a mediano plazo es desarrollar prototipos funcionales que puedan ser probados en entornos productivos reales.",
+        "vision3_title": "Colaboración con Expertos",
+        "vision3_text": "Buscamos establecer alianzas con profesionales especializados que puedan guiarnos en el desarrollo de soluciones más robustas.",
+        "vision4_title": "Emprendimiento Formal",
+        "vision4_text": "Visualizamos MANZEVO como una empresa formal en el futuro, contribuyendo a la innovación tecnológica en la industria alimentaria argentina.",
+        
+        // Sección Contacto
+        "contact_title": "Contacto",
+        "contact_intro": "Estamos entusiasmados por compartir nuestro proyecto y aprender de profesionales del sector. Contáctenos para conocer más sobre MANZEVO o para brindarnos orientación sobre nuestro desarrollo.",
+        "contact_info_title": "Información de Contacto",
+        "contact_email": "Email",
+        "contact_location": "Ubicación",
+        "contact_hours": "Horario de Atención",
+        "contact_form_title": "Envíanos un Mensaje",
+        "contact_form_name": "Nombre completo",
+        "contact_form_email": "Correo electrónico",
+        "contact_form_subject": "Asunto",
+        "contact_form_message": "Mensaje",
+        "contact_form_button": "Enviar Mensaje",
+        
+        // Footer
+        "footer_title": "MANZEVO",
+        "footer_description": "Proyecto de estudiantes. Innovación y tradición en la elaboración de salames y embutidos.",
+        "footer_links": "Enlaces Rápidos",
+        "contact_hours_footer": "Lun-Vie: 8:00-13:00 hs",
+        "footer_rights": "Todos los derechos reservados",
+        
+        // Modal
+        "modal_success_title": "¡Mensaje Enviado con Éxito!",
+        "modal_success_text": "Hemos recibido tu mensaje correctamente. Te contactaremos a la brevedad.",
+        "modal_button": "Aceptar"
+      },
+      en: {
+        // Menú
+        "menu_home": "Home",
+        "menu_about": "About Us",
+        "menu_services": "Services",
+        "menu_vision": "Future Vision",
+        "menu_contact": "Contact",
+        
+        // Header
+        "header_title": "MANZEVO",
+        "header_subtitle": "Innovation and tradition in the production of salami and sausages",
+        
+        // Sección Inicio
+        "welcome_title": "Welcome to MANZEVO",
+        "welcome_text1": "MANZEVO is an innovative venture created by students, dedicated to the design and development of automated machinery for the production of high-quality salami and sausages. We combine our enthusiasm for technology with respect for artisanal traditions, exploring solutions that can improve efficiency without compromising the authenticity of the final product.",
+        "welcome_text2": "Our mission is to research and develop innovative prototypes for the sausage industry, learning about automation while respecting the traditional processes that give character to these typical products.",
+        "value1_title": "Continuous Training",
+        "value1_text": "This project is part of our learning process, applying technical and scientific knowledge.",
+        "value2_title": "Respect for Tradition",
+        "value2_text": "We value and study the traditional processes that give character to regional products.",
+        "value3_title": "Young Innovation",
+        "value3_text": "We bring a fresh perspective and creative solutions from our vision as young entrepreneurs.",
+        
+        // Sección Quiénes Somos
+        "about_title": "About Us",
+        "about_highlight1": "MANZEVO",
+        "about_highlight2": "is a project developed by students from San Rafael, Mendoza. We were born in 2025 as an initiative that seeks to combine learning with the development of practical solutions for the local sausage industry.",
+        "about_history_title": "Our History",
+        "about_history_text1": "MANZEVO began in 2025 when we identified an opportunity to improve salami production processes in our region. We observed that small producers faced difficulties maintaining consistency in their processes while preserving artisanal techniques.",
+        "about_history_text2": "Inspired by this need, we began to research and design our first prototype machine for salami production, focusing on simplifying processes without losing the artisanal essence. What started as an idea among classmates soon became a passion for technological innovation applied to gastronomic tradition.",
+        "about_history_text3": "Today, MANZEVO represents the effort and creativity of young people who believe in the potential of technology to generate solutions with a positive impact on their community.",
+        "about_team_title": "Our Team",
+        "about_team_text": "We are a group of students with interests in technology, engineering, and entrepreneurship. We work with dedication and curiosity, constantly learning about automation and production processes. Our strength lies in adaptability, the passion for creating innovative solutions, and commitment to our professional development.",
+        
+        // Sección Servicios
+        "services_title": "Services",
+        "services_intro": "We offer research, prototype development and consulting based on our learning about process automation for the sausage industry.",
+        "service1_title": "Prototype Design",
+        "service1_text": "We develop models and conceptual prototypes of machines for salami production, applying technical knowledge acquired in our training.",
+        "service2_title": "Technical Research",
+        "service2_text": "We conduct studies on sausage production processes, identifying improvement opportunities through controlled automation.",
+        "service3_title": "Specialized Consulting",
+        "service3_text": "We share our findings and learnings with local producers, offering a young perspective on possible improvements in their processes.",
+        
+        // Sección Visión
+        "vision_title": "Future Vision",
+        "vision_intro": "We establish clear objectives for our future development in the food automation industry.",
+        "vision1_title": "Professional Training",
+        "vision1_text": "We aspire to continue our studies in engineering and food technology to professionalize our knowledge.",
+        "vision2_title": "Functional Prototypes",
+        "vision2_text": "Our medium-term goal is to develop functional prototypes that can be tested in real production environments.",
+        "vision3_title": "Collaboration with Experts",
+        "vision3_text": "We seek to establish alliances with specialized professionals who can guide us in developing more robust solutions.",
+        "vision4_title": "Formal Entrepreneurship",
+        "vision4_text": "We envision MANZEVO as a formal company in the future, contributing to technological innovation in the Argentine food industry.",
+        
+        // Sección Contacto
+        "contact_title": "Contact",
+        "contact_intro": "We are excited to share our project and learn from professionals in the sector. Contact us to learn more about MANZEVO or to provide guidance on our development.",
+        "contact_info_title": "Contact Information",
+        "contact_email": "Email",
+        "contact_location": "Location",
+        "contact_hours": "Business Hours",
+        "contact_form_title": "Send us a Message",
+        "contact_form_name": "Full name",
+        "contact_form_email": "Email address",
+        "contact_form_subject": "Subject",
+        "contact_form_message": "Message",
+        "contact_form_button": "Send Message",
+        
+        // Footer
+        "footer_title": "MANZEVO",
+        "footer_description": "Student project. Innovation and tradition in the production of salami and sausages.",
+        "footer_links": "Quick Links",
+        "contact_hours_footer": "Mon-Fri: 8:00-13:00 hs",
+        "footer_rights": "All rights reserved",
+        
+        // Modal
+        "modal_success_title": "Message Sent Successfully!",
+        "modal_success_text": "We have received your message correctly. We will contact you shortly.",
+        "modal_button": "Accept"
+      },
+      pt: {
+        // Menú
+        "menu_home": "Início",
+        "menu_about": "Quem Somos",
+        "menu_services": "Serviços",
+        "menu_vision": "Visão Futura",
+        "menu_contact": "Contato",
+        
+        // Header
+        "header_title": "MANZEVO",
+        "header_subtitle": "Inovação e tradição na elaboração de salames e embutidos",
+        
+        // Sección Inicio
+        "welcome_title": "Bem-vindos à MANZEVO",
+        "welcome_text1": "MANZEVO é um empreendimento inovador criado por estudantes, dedicado ao design e desenvolvimento de maquinaria automatizada para a elaboração de salames e embutidos de alta qualidade. Combinamos nosso entusiasmo pela tecnologia com o respeito pelas tradições artesanais, explorando soluções que possam melhorar a eficiência sem comprometer a autenticidade do produto final.",
+        "welcome_text2": "Nossa missão é pesquisar e desenvolver protótipos inovadores para a indústria de embutidos, aprendendo sobre automação enquanto respeitamos os processos tradicionais que dão caráter a estes produtos típicos.",
+        "value1_title": "Formação Contínua",
+        "value1_text": "Este projeto faz parte do nosso processo de aprendizagem, aplicando conhecimentos técnicos e científicos.",
+        "value2_title": "Respeito pela Tradição",
+        "value2_text": "Valorizamos e estudamos os processos tradicionais que dão caráter aos produtos regionais.",
+        "value3_title": "Inovação Jovem",
+        "value3_text": "Trazemos uma perspectiva fresca e soluções criativas da nossa visão como jovens empreendedores.",
+        
+        // Sección Quiénes Somos
+        "about_title": "Quem Somos",
+        "about_highlight1": "MANZEVO",
+        "about_highlight2": "é um projeto desenvolvido por estudantes de San Rafael, Mendoza. Nascemos em 2025 como uma iniciativa que busca combinar a aprendizagem com o desenvolvimento de soluções práticas para a indústria local de embutidos.",
+        "about_history_title": "Nossa História",
+        "about_history_text1": "MANZEVO começou em 2025 quando identificamos uma oportunidade de melhorar os processos de produção de salames em nossa região. Observamos que pequenos produtores enfrentavam dificuldades para manter a consistência em seus processos enquanto preservavam as técnicas artesanais.",
+        "about_history_text2": "Inspirados por esta necessidade, começamos a pesquisar e projetar nosso primeiro protótipo de máquina para a produção de salames, focando em simplificar processos sem perder a essência artesanal. O que começou como uma ideia entre colegas logo se tornou uma paixão pela inovação tecnológica aplicada à tradição gastronômica.",
+        "about_history_text3": "Hoje, MANZEVO representa o esforço e a criatividade de jovens que acreditam no potencial da tecnologia para gerar soluções com impacto positivo em sua comunidade.",
+        "about_team_title": "Nossa Equipe",
+        "about_team_text": "Somos um grupo de estudantes com interesses em tecnologia, engenharia e empreendedorismo. Trabalhamos com dedicação e curiosidade, aprendendo constantemente sobre automação e processos produtivos. Nossa força está na capacidade de adaptação, a paixão por criar soluções inovadoras e o compromisso com nosso desenvolvimento profissional.",
+        
+        // Sección Servicios
+        "services_title": "Serviços",
+        "services_intro": "Oferecemos pesquisa, desenvolvimento de protótipos e consultoria baseada em nossa aprendizagem sobre automação de processos para a indústria de embutidos.",
+        "service1_title": "Design de Protótipos",
+        "service1_text": "Desenvolvemos modelos e protótipos conceituais de máquinas para a produção de salames, aplicando conhecimentos técnicos adquiridos em nossa formação.",
+        "service2_title": "Pesquisa Técnica",
+        "service2_text": "Realizamos estudos sobre processos de produção de embutidos, identificando oportunidades de melhoria mediante a automação controlada.",
+        "service3_title": "Consultoria Especializada",
+        "service3_text": "Compartilhamos nossas descobertas e aprendizados com produtores locais, oferecendo uma perspectiva jovem sobre possíveis melhorias em seus processos.",
+        
+        // Sección Visión
+        "vision_title": "Visão Futura",
+        "vision_intro": "Estabelecemos objetivos claros para nosso desenvolvimento futuro na indústria de automação alimentar.",
+        "vision1_title": "Formação Profissional",
+        "vision1_text": "Aspiramos continuar nossos estudos em engenharia e tecnologia alimentar para profissionalizar nossos conhecimentos.",
+        "vision2_title": "Protótipos Funcionais",
+        "vision2_text": "Nosso objetivo a médio prazo é desenvolver protótipos funcionais que possam ser testados em ambientes produtivos reais.",
+        "vision3_title": "Colaboração com Especialistas",
+        "vision3_text": "Buscamos estabelecer alianças com profissionais especializados que possam nos orientar no desenvolvimento de soluções mais robustas.",
+        "vision4_title": "Empreendedorismo Formal",
+        "vision4_text": "Visualizamos MANZEVO como uma empresa formal no futuro, contribuindo para a inovação tecnológica na indústria alimentar argentina.",
+        
+        // Sección Contacto
+        "contact_title": "Contato",
+        "contact_intro": "Estamos entusiasmados por compartilhar nosso projeto e aprender com profissionais do setor. Entre em contato conosco para conhecer mais sobre MANZEVO ou para nos orientar sobre nosso desenvolvimento.",
+        "contact_info_title": "Informação de Contato",
+        "contact_email": "Email",
+        "contact_location": "Localização",
+        "contact_hours": "Horário de Atendimento",
+        "contact_form_title": "Envie-nos uma Mensagem",
+        "contact_form_name": "Nome completo",
+        "contact_form_email": "Correio eletrônico",
+        "contact_form_subject": "Assunto",
+        "contact_form_message": "Mensagem",
+        "contact_form_button": "Enviar Mensagem",
+        
+        // Footer
+        "footer_title": "MANZEVO",
+        "footer_description": "Projeto de estudantes. Inovação e tradição na elaboração de salames e embutidos.",
+        "footer_links": "Links Rápidos",
+        "contact_hours_footer": "Seg-Sex: 8:00-13:00 hs",
+        "footer_rights": "Todos os direitos reservados",
+        
+        // Modal
+        "modal_success_title": "Mensagem Enviada com Sucesso!",
+        "modal_success_text": "Recebemos sua mensagem corretamente. Entraremos em contato em breve.",
+        "modal_button": "Aceitar"
+      }
+    };
+
+    // Elementos del menú
+    const menuToggle = document.getElementById('menuToggle');
+    const sideMenu = document.getElementById('sideMenu');
+    const closeMenu = document.getElementById('closeMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const menuLinks = document.querySelectorAll('.side-menu nav a');
+    const langButtons = document.querySelectorAll('.lang-btn');
+
+    // Mostrar/ocultar menú
+    menuToggle.addEventListener('click', () => {
+      sideMenu.classList.add('active');
+      menuOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    function closeSideMenu() {
+      sideMenu.classList.remove('active');
+      menuOverlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    closeMenu.addEventListener('click', closeSideMenu);
+    menuOverlay.addEventListener('click', closeSideMenu);
+
+    // Cerrar menú al hacer clic en un enlace
+    menuLinks.forEach(link => {
+      link.addEventListener('click', closeSideMenu);
+    });
+
+    // Mostrar/ocultar botón del menú al hacer scroll
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        menuToggle.classList.add('visible');
+      } else {
+        menuToggle.classList.remove('visible');
+      }
+    });
+
+    // Cambiar idioma
+    function changeLanguage(lang) {
+      // Actualizar botones de idioma
+      langButtons.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.lang === lang) {
+          btn.classList.add('active');
+        }
+      });
+      
+      // Actualizar contenido
+      const elements = document.querySelectorAll('[data-translate]');
+      elements.forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[lang] && translations[lang][key]) {
+          element.textContent = translations[lang][key];
+        }
+      });
+      
+      // Actualizar placeholders del formulario
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const subjectInput = document.getElementById('subject');
+      const messageTextarea = document.getElementById('message');
+      
+      if (lang === 'es') {
+        nameInput.placeholder = 'Ingresa tu nombre';
+        emailInput.placeholder = 'Ingresa tu email';
+        subjectInput.placeholder = 'Asunto del mensaje';
+        messageTextarea.placeholder = 'Escribe tu mensaje aquí';
+      } else if (lang === 'en') {
+        nameInput.placeholder = 'Enter your name';
+        emailInput.placeholder = 'Enter your email';
+        subjectInput.placeholder = 'Message subject';
+        messageTextarea.placeholder = 'Write your message here';
+      } else if (lang === 'pt') {
+        nameInput.placeholder = 'Digite seu nome';
+        emailInput.placeholder = 'Digite seu email';
+        subjectInput.placeholder = 'Assunto da mensagem';
+        messageTextarea.placeholder = 'Escreva sua mensagem aqui';
+      }
+      
+      // Guardar preferencia de idioma
+      localStorage.setItem('preferredLanguage', lang);
+    }
+
+    // Event listeners para botones de idioma
+    langButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.dataset.lang;
+        changeLanguage(lang);
+      });
+    });
+
+    // Cargar idioma preferido al iniciar
+    const savedLanguage = localStorage.getItem('preferredLanguage') || 'es';
+    changeLanguage(savedLanguage);
+
+    // Fade-in al hacer scroll
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = { threshold: 0.15 };
+
+    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+
+    // Smooth scrolling para los enlaces de navegación
+    document.querySelectorAll('.side-menu nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Funciones para el modal
+    function showModal() {
+      const modal = document.getElementById('confirmationModal');
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('confirmationModal');
+      modal.style.display = 'none';
+    }
+
+    // Cerrar modal al hacer clic fuera del contenido
+    document.getElementById('confirmationModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+
+    // Manejo del formulario con AJAX
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Mostrar el modal de confirmación
+      showModal();
+      
+      // Enviar formulario mediante AJAX
+      const formData = new FormData(this);
+      
+      fetch('https://formspree.io/f/xldpwnyv', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          // El formulario se envió correctamente
+          console.log('Formulario enviado con éxito');
+          
+          // Limpiar el formulario después de enviar
+          setTimeout(() => {
+            document.getElementById('contactForm').reset();
+          }, 500);
+          
+        } else {
+          throw new Error('Error en el envío');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // Mostrar mensaje de error en el modal
+        const modalContent = document.querySelector('.modal-content');
+        modalContent.innerHTML = `
+          <i class="fas fa-exclamation-triangle" style="color: #e63946;"></i>
+          <h3 data-translate="modal_error_title">Error al Enviar</h3>
+          <p data-translate="modal_error_text">Hubo un problema al enviar tu mensaje. Por favor, intenta nuevamente.</p>
+          <button class="modal-btn" onclick="closeModal()" data-translate="modal_button">Reintentar</button>
+        `;
+      });
+    });
+
+    // Cerrar modal automáticamente después de 5 segundos
+    document.getElementById('confirmationModal').addEventListener('click', function() {
+      setTimeout(closeModal, 5000);
+    });
+  </script>
+
+</body>
+</html>
