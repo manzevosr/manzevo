@@ -13,7 +13,7 @@
       --light: #f5f7fa;
       --text: #1b263b;
       --instagram: #E4405F;
-      --base-font-size: 14px;
+      --base-font-size: 16px;
     }
     
     * {
@@ -72,7 +72,6 @@
       z-index: 2;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 80px; /* Espacio para el botón de menú en ambos lados */
     }
 
     .header-content h1 {
@@ -108,8 +107,6 @@
       cursor: pointer;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
       transition: all 0.3s ease;
-      opacity: 1;
-      transform: translateX(0);
     }
 
     .menu-toggle:hover {
@@ -199,7 +196,7 @@
       text-align: center;
     }
 
-    /* Selector de idioma como opción del menú */
+    /* Selector de idioma */
     .language-option {
       display: block;
       color: white;
@@ -213,7 +210,6 @@
 
     .language-option:hover {
       background: var(--secondary);
-      padding-left: 2rem;
     }
 
     .language-option i {
@@ -229,18 +225,15 @@
 
     .language-dropdown-content {
       display: none;
-      position: absolute;
-      left: 100%;
-      top: 0;
       background: var(--secondary);
-      min-width: 160px;
-      box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.2);
-      border-radius: 0 8px 8px 0;
+      width: 100%;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 0 0 8px 8px;
       z-index: 1001;
       overflow: hidden;
     }
 
-    .language-dropdown:hover .language-dropdown-content {
+    .language-dropdown.active .language-dropdown-content {
       display: block;
     }
 
@@ -691,20 +684,12 @@
         margin: 3rem auto;
         padding: 2.5rem;
       }
-      
-      .header-content {
-        padding: 0 20px; /* Menos padding en pantallas grandes */
-      }
     }
 
     @media (min-width: 1024px) {
       section {
         margin: 4rem auto;
         padding: 3rem;
-      }
-      
-      .header-content {
-        padding: 0; /* Sin padding en pantallas muy grandes */
       }
     }
 
@@ -733,20 +718,9 @@
         grid-template-columns: 1fr;
       }
       
-      .header-content {
-        padding: 0 70px; /* Más padding en móviles */
-      }
-      
       .menu-toggle {
         top: 1rem;
         left: 1rem;
-      }
-      
-      .language-dropdown-content {
-        left: 0;
-        top: 100%;
-        width: 100%;
-        border-radius: 0 0 8px 8px;
       }
     }
 
@@ -782,9 +756,9 @@
       <a href="#contacto"><i class="fas fa-envelope"></i> <span data-translate="menu_contact">Contacto</span></a>
       
       <!-- Opción de idioma como parte del menú -->
-      <div class="language-dropdown">
-        <div class="language-option">
-          <i class="fas fa-globe"></i> <span data-translate="menu_language">Idioma</span> <i class="fas fa-chevron-right" style="float: right; margin-top: 2px;"></i>
+      <div class="language-dropdown" id="languageDropdown">
+        <div class="language-option" id="languageToggle">
+          <i class="fas fa-globe"></i> <span data-translate="menu_language">Idioma</span> <i class="fas fa-chevron-down" style="float: right; margin-top: 2px;"></i>
         </div>
         <div class="language-dropdown-content">
           <a href="#" class="language-option-dropdown" data-lang="es">
@@ -818,7 +792,6 @@
     </div>
   </header>
 
-  <!-- El resto del contenido se mantiene igual -->
   <section id="inicio" class="fade-in">
     <h2 data-translate="welcome_title">Bienvenidos a MANZEVO</h2>
     <p data-translate="welcome_text1">MANZEVO es un emprendimiento innovador creado por estudiantes, dedicado al diseño y desarrollo de maquinaria automatizada para la elaboración de salames y embutidos de alta calidad. Combinamos nuestro entusiasmo por la tecnología con el respeto por las tradiciones artesanales, explorando soluciones que puedan mejorar la eficiencia sin comprometer la autenticidad del producto final.</p>
@@ -846,7 +819,146 @@
     </div>
   </section>
 
-  <!-- Resto de las secciones... -->
+  <section id="quienes-somos" class="fade-in">
+    <h2 data-translate="about_title">Quiénes Somos</h2>
+    <p data-translate="about_text1">MANZEVO nace como un proyecto estudiantil que busca fusionar la innovación tecnológica con la tradición en la elaboración de embutidos. Somos un equipo de jóvenes apasionados por la ingeniería y la gastronomía, comprometidos con el desarrollo de soluciones que mejoren los procesos productivos sin perder la esencia de los productos tradicionales.</p>
+    
+    <p data-translate="about_text2">Nuestro enfoque combina investigación aplicada, desarrollo tecnológico y respeto por los saberes ancestrales, creando un puente entre la academia y la industria alimentaria.</p>
+  </section>
+
+  <section id="servicios" class="fade-in">
+    <h2 data-translate="services_title">Nuestros Servicios</h2>
+    <p data-translate="services_intro">Ofrecemos soluciones integrales para la industria de embutidos, desde el diseño de maquinaria hasta la implementación de procesos optimizados.</p>
+    
+    <div class="services-grid">
+      <div class="service-card">
+        <i class="fas fa-cogs"></i>
+        <h3 data-translate="service1_title">Diseño de Maquinaria</h3>
+        <p data-translate="service1_text">Desarrollamos equipos automatizados para la elaboración de salames y embutidos, adaptados a las necesidades específicas de cada productor.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-flask"></i>
+        <h3 data-translate="service2_title">Investigación y Desarrollo</h3>
+        <p data-translate="service2_text">Realizamos estudios para optimizar procesos y mejorar la calidad de los productos, combinando técnicas tradicionales con tecnología moderna.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-chalkboard-teacher"></i>
+        <h3 data-translate="service3_title">Capacitación</h3>
+        <p data-translate="service3_text">Ofrecemos formación en el uso de nuestras máquinas y en técnicas de elaboración que respetan la tradición mientras incorporan innovaciones.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="vision" class="fade-in">
+    <h2 data-translate="vision_title">Visión Futura</h2>
+    <p data-translate="vision_text1">Aspiramos a convertirnos en referentes en la innovación aplicada a la industria de embutidos, contribuyendo al desarrollo de un sector más eficiente y sostenible sin perder la identidad de sus productos tradicionales.</p>
+    
+    <div class="vision-grid">
+      <div class="vision-card">
+        <i class="fas fa-rocket"></i>
+        <h3 data-translate="vision1_title">Crecimiento Sostenible</h3>
+        <p data-translate="vision1_text">Buscamos expandir nuestras soluciones a nivel nacional e internacional, manteniendo siempre nuestro compromiso con la calidad y la tradición.</p>
+      </div>
+      <div class="vision-card">
+        <i class="fas fa-handshake"></i>
+        <h3 data-translate="vision2_title">Colaboración</h3>
+        <p data-translate="vision2_text">Trabajamos para establecer alianzas con productores, instituciones académicas y centros de investigación.</p>
+      </div>
+      <div class="vision-card">
+        <i class="fas fa-leaf"></i>
+        <h3 data-translate="vision3_title">Sostenibilidad</h3>
+        <p data-translate="vision3_text">Incorporamos prácticas sostenibles en nuestros procesos, reduciendo el impacto ambiental de la producción de embutidos.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="fade-in">
+    <h2 data-translate="contact_title">Contacto</h2>
+    <p data-translate="contact_intro">¿Interesado en nuestros servicios? Contáctanos para más información.</p>
+    
+    <div class="contact-container">
+      <div class="contact-info">
+        <h3 data-translate="contact_info">Información de Contacto</h3>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div>
+            <strong data-translate="address_title">Dirección</strong>
+            <p data-translate="address">San Rafael, Mendoza, Argentina</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <strong data-translate="email_title">Email</strong>
+            <p>manzevo.sr@gmail.com</p>
+          </div>
+        </div>
+        <div class="social">
+          <a href="https://www.instagram.com/manzevo.sr/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      
+      <div class="contact-form">
+        <h3 data-translate="contact_form">Formulario de Contacto</h3>
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name" data-translate="name_label">Nombre</label>
+            <input type="text" id="name" name="name" required placeholder="Ingresa tu nombre">
+          </div>
+          <div class="form-group">
+            <label for="email" data-translate="email_label">Email</label>
+            <input type="email" id="email" name="email" required placeholder="Ingresa tu email">
+          </div>
+          <div class="form-group">
+            <label for="subject" data-translate="subject_label">Asunto</label>
+            <input type="text" id="subject" name="subject" required placeholder="Asunto del mensaje">
+          </div>
+          <div class="form-group">
+            <label for="message" data-translate="message_label">Mensaje</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Escribe tu mensaje aquí"></textarea>
+          </div>
+          <button type="submit" class="btn" data-translate="send_button">Enviar Mensaje</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal de confirmación -->
+  <div class="modal-overlay" id="confirmationModal">
+    <div class="modal-content">
+      <i class="fas fa-check-circle"></i>
+      <h3 data-translate="modal_success_title">¡Mensaje Enviado!</h3>
+      <p data-translate="modal_success_text">Gracias por contactarnos. Te responderemos a la brevedad.</p>
+      <button class="modal-btn" onclick="closeModal()" data-translate="modal_button">Aceptar</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3 data-translate="footer_about">Sobre MANZEVO</h3>
+        <p data-translate="footer_about_text">Innovación y tradición en la elaboración de salames y embutidos. Proyecto estudiantil dedicado al desarrollo de maquinaria automatizada.</p>
+      </div>
+      <div class="footer-section">
+        <h3 data-translate="footer_links">Enlaces Rápidos</h3>
+        <p><a href="#inicio" style="color: white;">Inicio</a></p>
+        <p><a href="#quienes-somos" style="color: white;">Quiénes Somos</a></p>
+        <p><a href="#servicios" style="color: white;">Servicios</a></p>
+        <p><a href="#contacto" style="color: white;">Contacto</a></p>
+      </div>
+      <div class="footer-section">
+        <h3 data-translate="footer_contact">Contacto</h3>
+        <p><i class="fas fa-map-marker-alt"></i> San Rafael, Mendoza, Argentina</p>
+        <p><i class="fas fa-envelope"></i> manzevo.sr@gmail.com</p>
+        <div class="social">
+          <a href="https://www.instagram.com/manzevo.sr/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2023 MANZEVO. <span data-translate="footer_rights">Todos los derechos reservados.</span></p>
+    </div>
+  </footer>
 
   <script>
     // Traducciones para los diferentes idiomas
@@ -875,7 +987,58 @@
         "value3_title": "Innovación Joven",
         "value3_text": "Aportamos una perspectiva fresca y soluciones creativas desde nuestra visión como jóvenes emprendedores.",
         
-        // Resto de las traducciones...
+        // Sección Quiénes Somos
+        "about_title": "Quiénes Somos",
+        "about_text1": "MANZEVO nace como un proyecto estudiantil que busca fusionar la innovación tecnológica con la tradición en la elaboración de embutidos. Somos un equipo de jóvenes apasionados por la ingeniería y la gastronomía, comprometidos con el desarrollo de soluciones que mejoren los procesos productivos sin perder la esencia de los productos tradicionales.",
+        "about_text2": "Nuestro enfoque combina investigación aplicada, desarrollo tecnológico y respeto por los saberes ancestrales, creando un puente entre la academia y la industria alimentaria.",
+        
+        // Sección Servicios
+        "services_title": "Nuestros Servicios",
+        "services_intro": "Ofrecemos soluciones integrales para la industria de embutidos, desde el diseño de maquinaria hasta la implementación de procesos optimizados.",
+        "service1_title": "Diseño de Maquinaria",
+        "service1_text": "Desarrollamos equipos automatizados para la elaboración de salames y embutidos, adaptados a las necesidades específicas de cada productor.",
+        "service2_title": "Investigación y Desarrollo",
+        "service2_text": "Realizamos estudios para optimizar procesos y mejorar la calidad de los productos, combinando técnicas tradicionales con tecnología moderna.",
+        "service3_title": "Capacitación",
+        "service3_text": "Ofrecemos formación en el uso de nuestras máquinas y en técnicas de elaboración que respetan la tradición mientras incorporan innovaciones.",
+        
+        // Sección Visión
+        "vision_title": "Visión Futura",
+        "vision_text1": "Aspiramos a convertirnos en referentes en la innovación aplicada a la industria de embutidos, contribuyendo al desarrollo de un sector más eficiente y sostenible sin perder la identidad de sus productos tradicionales.",
+        "vision1_title": "Crecimiento Sostenible",
+        "vision1_text": "Buscamos expandir nuestras soluciones a nivel nacional e internacional, manteniendo siempre nuestro compromiso con la calidad y la tradición.",
+        "vision2_title": "Colaboración",
+        "vision2_text": "Trabajamos para establecer alianzas con productores, instituciones académicas y centros de investigación.",
+        "vision3_title": "Sostenibilidad",
+        "vision3_text": "Incorporamos prácticas sostenibles en nuestros procesos, reduciendo el impacto ambiental de la producción de embutidos.",
+        
+        // Sección Contacto
+        "contact_title": "Contacto",
+        "contact_intro": "¿Interesado en nuestros servicios? Contáctanos para más información.",
+        "contact_info": "Información de Contacto",
+        "address_title": "Dirección",
+        "address": "San Rafael, Mendoza, Argentina",
+        "email_title": "Email",
+        "contact_form": "Formulario de Contacto",
+        "name_label": "Nombre",
+        "email_label": "Email",
+        "subject_label": "Asunto",
+        "message_label": "Mensaje",
+        "send_button": "Enviar Mensaje",
+        
+        // Footer
+        "footer_about": "Sobre MANZEVO",
+        "footer_about_text": "Innovación y tradición en la elaboración de salames y embutidos. Proyecto estudiantil dedicado al desarrollo de maquinaria automatizada.",
+        "footer_links": "Enlaces Rápidos",
+        "footer_contact": "Contacto",
+        "footer_rights": "Todos los derechos reservados.",
+        
+        // Modal
+        "modal_success_title": "¡Mensaje Enviado!",
+        "modal_success_text": "Gracias por contactarnos. Te responderemos a la brevedad.",
+        "modal_error_title": "Error al Enviar",
+        "modal_error_text": "Hubo un problema al enviar tu mensaje. Por favor, intenta nuevamente.",
+        "modal_button": "Aceptar"
       },
       en: {
         // Menú
@@ -901,7 +1064,58 @@
         "value3_title": "Young Innovation",
         "value3_text": "We bring a fresh perspective and creative solutions from our vision as young entrepreneurs.",
         
-        // Resto de las traducciones...
+        // Sección Quiénes Somos
+        "about_title": "About Us",
+        "about_text1": "MANZEVO was born as a student project that seeks to fuse technological innovation with tradition in the production of sausages. We are a team of young people passionate about engineering and gastronomy, committed to developing solutions that improve production processes without losing the essence of traditional products.",
+        "about_text2": "Our approach combines applied research, technological development and respect for ancestral knowledge, creating a bridge between academia and the food industry.",
+        
+        // Sección Servicios
+        "services_title": "Our Services",
+        "services_intro": "We offer comprehensive solutions for the sausage industry, from machinery design to the implementation of optimized processes.",
+        "service1_title": "Machinery Design",
+        "service1_text": "We develop automated equipment for the production of salami and sausages, adapted to the specific needs of each producer.",
+        "service2_title": "Research and Development",
+        "service2_text": "We conduct studies to optimize processes and improve product quality, combining traditional techniques with modern technology.",
+        "service3_title": "Training",
+        "service3_text": "We offer training in the use of our machines and in production techniques that respect tradition while incorporating innovations.",
+        
+        // Sección Visión
+        "vision_title": "Future Vision",
+        "vision_text1": "We aspire to become benchmarks in innovation applied to the sausage industry, contributing to the development of a more efficient and sustainable sector without losing the identity of its traditional products.",
+        "vision1_title": "Sustainable Growth",
+        "vision1_text": "We seek to expand our solutions nationally and internationally, always maintaining our commitment to quality and tradition.",
+        "vision2_title": "Collaboration",
+        "vision2_text": "We work to establish alliances with producers, academic institutions and research centers.",
+        "vision3_title": "Sustainability",
+        "vision3_text": "We incorporate sustainable practices in our processes, reducing the environmental impact of sausage production.",
+        
+        // Sección Contacto
+        "contact_title": "Contact",
+        "contact_intro": "Interested in our services? Contact us for more information.",
+        "contact_info": "Contact Information",
+        "address_title": "Address",
+        "address": "San Rafael, Mendoza, Argentina",
+        "email_title": "Email",
+        "contact_form": "Contact Form",
+        "name_label": "Name",
+        "email_label": "Email",
+        "subject_label": "Subject",
+        "message_label": "Message",
+        "send_button": "Send Message",
+        
+        // Footer
+        "footer_about": "About MANZEVO",
+        "footer_about_text": "Innovation and tradition in the production of salami and sausages. Student project dedicated to the development of automated machinery.",
+        "footer_links": "Quick Links",
+        "footer_contact": "Contact",
+        "footer_rights": "All rights reserved.",
+        
+        // Modal
+        "modal_success_title": "Message Sent!",
+        "modal_success_text": "Thank you for contacting us. We will get back to you shortly.",
+        "modal_error_title": "Error Sending",
+        "modal_error_text": "There was a problem sending your message. Please try again.",
+        "modal_button": "Accept"
       },
       pt: {
         // Menú
@@ -927,7 +1141,58 @@
         "value3_title": "Inovação Jovem",
         "value3_text": "Trazemos uma perspectiva fresca e soluções criativas da nossa visão como jovens empreendedores.",
         
-        // Resto de las traducciones...
+        // Sección Quiénes Somos
+        "about_title": "Quem Somos",
+        "about_text1": "MANZEVO nasceu como um projeto estudantil que busca fundir inovação tecnológica com tradição na elaboração de embutidos. Somos uma equipe de jovens apaixonados por engenharia e gastronomia, comprometidos com o desenvolvimento de soluções que melhorem os processos produtivos sem perder a essência dos produtos tradicionais.",
+        "about_text2": "Nossa abordagem combina pesquisa aplicada, desenvolvimento tecnológico e respeito pelos saberes ancestrais, criando uma ponte entre a academia e a indústria alimentícia.",
+        
+        // Sección Servicios
+        "services_title": "Nossos Serviços",
+        "services_intro": "Oferecemos soluções integrais para a indústria de embutidos, desde o design de maquinaria até a implementação de processos otimizados.",
+        "service1_title": "Design de Maquinaria",
+        "service1_text": "Desenvolvemos equipamentos automatizados para a elaboração de salames e embutidos, adaptados às necessidades específicas de cada produtor.",
+        "service2_title": "Pesquisa e Desenvolvimento",
+        "service2_text": "Realizamos estudos para otimizar processos e melhorar a qualidade dos produtos, combinando técnicas tradicionais com tecnologia moderna.",
+        "service3_title": "Capacitação",
+        "service3_text": "Oferecemos formação no uso de nossas máquinas e em técnicas de elaboração que respeitam a tradição enquanto incorporam inovações.",
+        
+        // Sección Visión
+        "vision_title": "Visão Futura",
+        "vision_text1": "Aspiramos a nos tornar referências em inovação aplicada à indústria de embutidos, contribuindo para o desenvolvimento de um setor mais eficiente e sustentável sem perder a identidade de seus produtos tradicionais.",
+        "vision1_title": "Crescimento Sustentável",
+        "vision1_text": "Buscamos expandir nossas soluções em nível nacional e internacional, mantendo sempre nosso compromisso com a qualidade e a tradição.",
+        "vision2_title": "Colaboração",
+        "vision2_text": "Trabalhamos para estabelecer alianças com produtores, instituições acadêmicas e centros de pesquisa.",
+        "vision3_title": "Sustentabilidade",
+        "vision3_text": "Incorporamos práticas sustentáveis em nossos processos, reduzindo o impacto ambiental da produção de embutidos.",
+        
+        // Sección Contacto
+        "contact_title": "Contato",
+        "contact_intro": "Interessado em nossos serviços? Entre em contato para mais informações.",
+        "contact_info": "Informações de Contato",
+        "address_title": "Endereço",
+        "address": "San Rafael, Mendoza, Argentina",
+        "email_title": "Email",
+        "contact_form": "Formulário de Contato",
+        "name_label": "Nome",
+        "email_label": "Email",
+        "subject_label": "Assunto",
+        "message_label": "Mensagem",
+        "send_button": "Enviar Mensagem",
+        
+        // Footer
+        "footer_about": "Sobre MANZEVO",
+        "footer_about_text": "Inovação e tradição na elaboração de salames e embutidos. Projeto estudantil dedicado ao desenvolvimento de maquinaria automatizada.",
+        "footer_links": "Links Rápidos",
+        "footer_contact": "Contato",
+        "footer_rights": "Todos os direitos reservados.",
+        
+        // Modal
+        "modal_success_title": "Mensagem Enviada!",
+        "modal_success_text": "Obrigado por entrar em contato. Responderemos em breve.",
+        "modal_error_title": "Erro ao Enviar",
+        "modal_error_text": "Houve um problema ao enviar sua mensagem. Por favor, tente novamente.",
+        "modal_button": "Aceitar"
       },
       de: {
         // Menú
@@ -953,7 +1218,58 @@
         "value3_title": "Junge Innovation",
         "value3_text": "Wir bringen eine frische Perspektive und kreative Lösungen aus unserer Sicht als junge Unternehmer ein.",
         
-        // Resto de las traducciones...
+        // Sección Quiénes Somos
+        "about_title": "Über Uns",
+        "about_text1": "MANZEVO wurde als Studentenprojekt geboren, das technologische Innovation mit Tradition in der Wurstherstellung verbinden möchte. Wir sind ein Team junger Menschen, die sich für Ingenieurwesen und Gastronomie begeistern und sich der Entwicklung von Lösungen verschrieben haben, die die Produktionsprozesse verbessern, ohne die Essenz traditioneller Produkte zu verlieren.",
+        "about_text2": "Unser Ansatz kombiniert angewandte Forschung, technologische Entwicklung und Respekt vor traditionellem Wissen und schafft so eine Brücke zwischen Wissenschaft und Lebensmittelindustrie.",
+        
+        // Sección Servicios
+        "services_title": "Unsere Dienstleistungen",
+        "services_intro": "Wir bieten umfassende Lösungen für die Wurstindustrie, vom Maschinendesign bis zur Implementierung optimierter Prozesse.",
+        "service1_title": "Maschinendesign",
+        "service1_text": "Wir entwickeln automatisierte Geräte für die Herstellung von Salami und Wurstwaren, die an die spezifischen Bedürfnisse jedes Herstellers angepasst sind.",
+        "service2_title": "Forschung und Entwicklung",
+        "service2_text": "Wir führen Studien durch, um Prozesse zu optimieren und die Produktqualität zu verbessern, wobei wir traditionelle Techniken mit moderner Technologie kombinieren.",
+        "service3_title": "Schulung",
+        "service3_text": "Wir bieten Schulungen zur Verwendung unserer Maschinen und zu Herstellungstechniken an, die die Tradition respektieren und gleichzeitig Innovationen einbeziehen.",
+        
+        // Sección Visión
+        "vision_title": "Zukunftsvision",
+        "vision_text1": "Wir streben danach, Referenzen für Innovation in der Wurstindustrie zu werden und zur Entwicklung eines effizienteren und nachhaltigeren Sektors beizutragen, ohne die Identität seiner traditionellen Produkte zu verlieren.",
+        "vision1_title": "Nachhaltiges Wachstum",
+        "vision1_text": "Wir streben danach, unsere Lösungen national und international zu erweitern und dabei stets unser Engagement für Qualität und Tradition aufrechtzuerhalten.",
+        "vision2_title": "Zusammenarbeit",
+        "vision2_text": "Wir arbeiten daran, Allianzen mit Herstellern, akademischen Einrichtungen und Forschungszentren aufzubauen.",
+        "vision3_title": "Nachhaltigkeit",
+        "vision3_text": "Wir integrieren nachhaltige Praktiken in unsere Prozesse und reduzieren die Umweltauswirkungen der Wurstproduktion.",
+        
+        // Sección Contacto
+        "contact_title": "Kontakt",
+        "contact_intro": "Interessiert an unseren Dienstleistungen? Kontaktieren Sie uns für weitere Informationen.",
+        "contact_info": "Kontaktinformationen",
+        "address_title": "Adresse",
+        "address": "San Rafael, Mendoza, Argentinien",
+        "email_title": "E-Mail",
+        "contact_form": "Kontaktformular",
+        "name_label": "Name",
+        "email_label": "E-Mail",
+        "subject_label": "Betreff",
+        "message_label": "Nachricht",
+        "send_button": "Nachricht senden",
+        
+        // Footer
+        "footer_about": "Über MANZEVO",
+        "footer_about_text": "Innovation und Tradition in der Herstellung von Salami und Wurstwaren. Studentenprojekt zur Entwicklung automatisierter Maschinen.",
+        "footer_links": "Schnelllinks",
+        "footer_contact": "Kontakt",
+        "footer_rights": "Alle Rechte vorbehalten.",
+        
+        // Modal
+        "modal_success_title": "Nachricht Gesendet!",
+        "modal_success_text": "Vielen Dank für Ihre Kontaktaufnahme. Wir werden uns in Kürze bei Ihnen melden.",
+        "modal_error_title": "Fehler beim Senden",
+        "modal_error_text": "Beim Senden Ihrer Nachricht ist ein Problem aufgetreten. Bitte versuchen Sie es erneut.",
+        "modal_button": "Akzeptieren"
       }
     };
 
@@ -964,6 +1280,8 @@
     const menuOverlay = document.getElementById('menuOverlay');
     const menuLinks = document.querySelectorAll('.side-menu nav a');
     const langOptions = document.querySelectorAll('.language-option-dropdown');
+    const languageDropdown = document.getElementById('languageDropdown');
+    const languageToggle = document.getElementById('languageToggle');
 
     // Mostrar/ocultar menú
     menuToggle.addEventListener('click', () => {
@@ -976,6 +1294,8 @@
       sideMenu.classList.remove('active');
       menuOverlay.classList.remove('active');
       document.body.style.overflow = 'auto';
+      // Cerrar también el menú de idiomas
+      languageDropdown.classList.remove('active');
     }
 
     closeMenu.addEventListener('click', closeSideMenu);
@@ -984,6 +1304,13 @@
     // Cerrar menú al hacer clic en un enlace
     menuLinks.forEach(link => {
       link.addEventListener('click', closeSideMenu);
+    });
+
+    // Toggle para el menú de idiomas
+    languageToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      languageDropdown.classList.toggle('active');
     });
 
     // Cambiar idioma
