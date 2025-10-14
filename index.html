@@ -89,12 +89,12 @@
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
 
-    /* Botón de menú hamburguesa */
+    /* Botón de menú hamburguesa - MODIFICADO: ahora está a la izquierda y se mueve cuando se abre */
     .menu-toggle {
       position: fixed;
       top: 1.5rem;
       left: 1.5rem;
-      z-index: 1000;
+      z-index: 1001;
       background: var(--secondary);
       color: white;
       border: none;
@@ -106,7 +106,13 @@
       justify-content: center;
       cursor: pointer;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
+    }
+
+    /* CORRECCIÓN: Cuando el menú está activo, el botón se mueve hacia la derecha */
+    body.menu-open .menu-toggle {
+      left: 280px; /* Se mueve justo al lado derecho del menú */
+      transform: translateX(10px); /* Un pequeño espacio adicional */
     }
 
     .menu-toggle:hover {
@@ -124,15 +130,15 @@
       transform: rotate(90deg);
     }
 
-    /* Menú lateral */
+    /* Menú lateral - MODIFICADO: ahora aparece desde la izquierda */
     .side-menu {
       position: fixed;
       top: 0;
-      left: -300px;
+      left: -280px;
       width: 280px;
       height: 100%;
       background: var(--primary);
-      z-index: 999;
+      z-index: 1000;
       transition: all 0.4s ease;
       box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
       overflow-y: auto;
@@ -274,7 +280,7 @@
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.5);
-      z-index: 998;
+      z-index: 999;
       opacity: 0;
       visibility: hidden;
       transition: all 0.3s ease;
@@ -722,6 +728,12 @@
         top: 1rem;
         left: 1rem;
       }
+      
+      /* En móviles, el botón se mueve más a la derecha */
+      body.menu-open .menu-toggle {
+        left: 280px;
+        transform: translateX(5px);
+      }
     }
 
     /* Ajustes para pantallas muy grandes */
@@ -734,12 +746,12 @@
 </head>
 <body>
 
-  <!-- Botón del menú hamburguesa -->
+  <!-- Botón del menú hamburguesa - MODIFICADO: ahora está a la izquierda y se mueve cuando se abre -->
   <button class="menu-toggle" id="menuToggle">
     <i class="fas fa-bars"></i>
   </button>
 
-  <!-- Menú lateral -->
+  <!-- Menú lateral - MODIFICADO: ahora aparece desde la izquierda -->
   <div class="side-menu" id="sideMenu">
     <div class="side-menu-header">
       <h3>MANZEVO</h3>
@@ -956,7 +968,8 @@
       </div>
     </div>
     <div class="copyright">
-      <p>&copy; 2023 MANZEVO. <span data-translate="footer_rights">Todos los derechos reservados.</span></p>
+      <!-- MODIFICADO: Cambiado de 2023 a 2025 -->
+      <p>&copy; 2025 MANZEVO. <span data-translate="footer_rights">Todos los derechos reservados.</span></p>
     </div>
   </footer>
 
@@ -1221,7 +1234,7 @@
         // Sección Quiénes Somos
         "about_title": "Über Uns",
         "about_text1": "MANZEVO wurde als Studentenprojekt geboren, das technologische Innovation mit Tradition in der Wurstherstellung verbinden möchte. Wir sind ein Team junger Menschen, die sich für Ingenieurwesen und Gastronomie begeistern und sich der Entwicklung von Lösungen verschrieben haben, die die Produktionsprozesse verbessern, ohne die Essenz traditioneller Produkte zu verlieren.",
-        "about_text2": "Unser Ansatz kombiniert angewandte Forschung, technologische Entwicklung und Respekt vor traditionellem Wissen und schafft so eine Brücke zwischen Wissenschaft und Lebensmittelindustrie.",
+        "about_text2": "Unser Ansatz combiniert angewandte Forschung, technologische Entwicklung und Respekt vor traditionellem Wissen und schafft so eine Brücke zwischen Wissenschaft und Lebensmittelindustrie.",
         
         // Sección Servicios
         "services_title": "Unsere Dienstleistungen",
@@ -1287,12 +1300,14 @@
     menuToggle.addEventListener('click', () => {
       sideMenu.classList.add('active');
       menuOverlay.classList.add('active');
+      document.body.classList.add('menu-open');
       document.body.style.overflow = 'hidden';
     });
 
     function closeSideMenu() {
       sideMenu.classList.remove('active');
       menuOverlay.classList.remove('active');
+      document.body.classList.remove('menu-open');
       document.body.style.overflow = 'auto';
       // Cerrar también el menú de idiomas
       languageDropdown.classList.remove('active');
@@ -1368,9 +1383,38 @@
       });
     });
 
+    // Función para detectar el idioma del navegador
+    function detectBrowserLanguage() {
+      const browserLang = navigator.language || navigator.userLanguage;
+      let detectedLang = 'es'; // Por defecto español
+      
+      if (browserLang.startsWith('en')) {
+        detectedLang = 'en';
+      } else if (browserLang.startsWith('pt')) {
+        detectedLang = 'pt';
+      } else if (browserLang.startsWith('de')) {
+        detectedLang = 'de';
+      }
+      
+      return detectedLang;
+    }
+
     // Cargar idioma preferido al iniciar
-    const savedLanguage = localStorage.getItem('preferredLanguage') || 'es';
-    changeLanguage(savedLanguage);
+    function loadPreferredLanguage() {
+      // Primero intentar cargar idioma guardado
+      const savedLanguage = localStorage.getItem('preferredLanguage');
+      
+      if (savedLanguage) {
+        changeLanguage(savedLanguage);
+      } else {
+        // Si no hay idioma guardado, detectar el idioma del navegador
+        const browserLang = detectBrowserLanguage();
+        changeLanguage(browserLang);
+      }
+    }
+
+    // Llamar a la función para cargar el idioma al cargar la página
+    document.addEventListener('DOMContentLoaded', loadPreferredLanguage);
 
     // Fade-in al hacer scroll
     const faders = document.querySelectorAll('.fade-in');
